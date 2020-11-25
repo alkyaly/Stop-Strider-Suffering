@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.alkyaly.stopstridersuffering",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [ "StriderEntityMixin" ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
