@@ -4,12 +4,12 @@
   "version": "${version}",
 
   "name": "Stop Strider Suffering",
-  "description": "",
+  "description": "Allows the player to remove the saddle from the Strider without killing it unmercifully",
   "authors": [
     "alkyaLy"
   ],
   "contact": {
-    "sources": "https://github.com/alkyaly"
+    "sources": "https://github.com/alkyaly/Stop-Strider-Suffering"
   },
 
   "license": "MIT",
