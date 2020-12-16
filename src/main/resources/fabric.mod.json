@@ -16,17 +16,12 @@
   "icon": "assets/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "main": [
-    ]
-  },
   "mixins": [
     "stop-strider-suffering.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.7.4",
-    "fabric": "*",
     "minecraft": ">=1.16.2"
   }
 }
