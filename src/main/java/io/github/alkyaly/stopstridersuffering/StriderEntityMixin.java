@@ -1,6 +1,7 @@
-package com.github.alkyaly.stopstridersuffering;
+package io.github.alkyaly.stopstridersuffering;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.StriderEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,6 +10,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,13 +28,14 @@ public abstract class StriderEntityMixin extends AnimalEntity {
 
     @Shadow public abstract void readCustomDataFromTag(CompoundTag tag);
 
+    @Shadow @Final private static TrackedData<Boolean> SADDLED;
+
     @Inject(at = @At("HEAD"), method = "interactMob")
     private void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         World world = player.getEntityWorld();
-        CompoundTag tag = new CompoundTag();
         if(!world.isClient && player.shouldCancelInteraction() && player.getStackInHand(hand).isEmpty() && isSaddled()) {
             dropItem(Items.SADDLE, 1);
-            readCustomDataFromTag(tag);
+            dataTracker.set(SADDLED, false);
         }
     }
 }
