@@ -33,7 +33,7 @@ public abstract class StriderEntityMixin extends AnimalEntity {
     @Inject(at = @At("HEAD"), method = "interactMob")
     private void interactMob(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
         World world = player.getEntityWorld();
-        if(!world.isClient && player.shouldCancelInteraction() && player.getStackInHand(hand).isEmpty() && isSaddled()) {
+        if(!world.isClient && player.shouldCancelInteraction() && player.getStackInHand(hand).isEmpty() && isSaddled()  && !hasPlayerRider()) {
             dropItem(Items.SADDLE, 1);
             dataTracker.set(SADDLED, false);
         }
